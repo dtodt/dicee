@@ -33,19 +33,11 @@ class _DicePageState extends State<DicePage> {
         children: <Widget>[
           _dice(
             side: leftDiceFace,
-            onPressed: () {
-              setState(() {
-                leftDiceFace = _rollDice();
-              });
-            },
+            onPressed: _RollAllDices,
           ),
           _dice(
             side: rightDiceFace,
-            onPressed: () {
-              setState(() {
-                rightDiceFace = _rollDice();
-              });
-            },
+            onPressed: _RollAllDices,
           ),
         ],
       ),
@@ -63,5 +55,12 @@ class _DicePageState extends State<DicePage> {
 
   int _rollDice() {
     return Random().nextInt(6) + 1;
+  }
+
+  _RollAllDices() {
+    setState(() {
+      leftDiceFace = _rollDice();
+      rightDiceFace = _rollDice();
+    });
   }
 }
