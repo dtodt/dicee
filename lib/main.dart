@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,15 +26,6 @@ class _DicePageState extends State<DicePage> {
   int leftDiceFace = 1;
   int rightDiceFace = 1;
 
-  _dice({int side, onPressed}) {
-    return Expanded(
-      child: FlatButton(
-        child: Image.asset('assets/images/dice$side.png'),
-        onPressed: onPressed,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -42,7 +35,7 @@ class _DicePageState extends State<DicePage> {
             side: leftDiceFace,
             onPressed: () {
               setState(() {
-                leftDiceFace = 5;
+                leftDiceFace = _rollDice();
               });
             },
           ),
@@ -50,12 +43,25 @@ class _DicePageState extends State<DicePage> {
             side: rightDiceFace,
             onPressed: () {
               setState(() {
-                rightDiceFace = 3;
+                rightDiceFace = _rollDice();
               });
             },
           ),
         ],
       ),
     );
+  }
+
+  _dice({int side, onPressed}) {
+    return Expanded(
+      child: FlatButton(
+        child: Image.asset('assets/images/dice$side.png'),
+        onPressed: onPressed,
+      ),
+    );
+  }
+
+  int _rollDice() {
+    return Random().nextInt(6) + 1;
   }
 }
