@@ -15,7 +15,15 @@ void main() {
   );
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftDiceFace = 1;
+  int rightDiceFace = 1;
+
   _dice({int side, onPressed}) {
     return Expanded(
       child: FlatButton(
@@ -31,15 +39,19 @@ class DicePage extends StatelessWidget {
       child: Row(
         children: <Widget>[
           _dice(
-            side: 1,
+            side: leftDiceFace,
             onPressed: () {
-              print('Left button pressed.');
+              setState(() {
+                leftDiceFace = 5;
+              });
             },
           ),
           _dice(
-            side: 2,
+            side: rightDiceFace,
             onPressed: () {
-              print('Right button pressed.');
+              setState(() {
+                rightDiceFace = 3;
+              });
             },
           ),
         ],
