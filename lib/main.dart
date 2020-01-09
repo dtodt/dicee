@@ -33,18 +33,18 @@ class _DicePageState extends State<DicePage> {
         children: <Widget>[
           _dice(
             side: leftDiceFace,
-            onPressed: _RollAllDices,
+            onPressed: _rollAllDices,
           ),
           _dice(
             side: rightDiceFace,
-            onPressed: _RollAllDices,
+            onPressed: _rollAllDices,
           ),
         ],
       ),
     );
   }
 
-  _dice({int side, onPressed}) {
+  Widget _dice({int side, onPressed}) {
     return Expanded(
       child: FlatButton(
         child: Image.asset('assets/images/dice$side.png'),
@@ -57,7 +57,7 @@ class _DicePageState extends State<DicePage> {
     return Random().nextInt(6) + 1;
   }
 
-  _RollAllDices() {
+  void _rollAllDices() {
     setState(() {
       leftDiceFace = _rollDice();
       rightDiceFace = _rollDice();
